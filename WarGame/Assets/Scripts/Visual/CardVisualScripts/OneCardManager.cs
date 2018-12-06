@@ -49,38 +49,57 @@ public class OneCardManager : MonoBehaviour {
         if (cardAsset.FactionAsset != null)
         {
             // if the card belongs to a certain character class
-            CardBodyImage.color = cardAsset.FactionAsset.FactionCardTint;
-            CardFaceFrameImage.color = cardAsset.FactionAsset.FactionCardTint;
-            CardTopRibbonImage.color = cardAsset.FactionAsset.FactionRibbonsTint;
-            CardLowRibbonImage.color = cardAsset.FactionAsset.FactionRibbonsTint;
+            if (CardBodyImage != null)
+                CardBodyImage.color = cardAsset.FactionAsset.FactionCardTint;
+            if (CardFaceFrameImage != null)
+                CardFaceFrameImage.color = cardAsset.FactionAsset.FactionCardTint;
+            if (CardTopRibbonImage != null)
+                CardTopRibbonImage.color = cardAsset.FactionAsset.FactionRibbonsTint;
+            if (CardLowRibbonImage != null)
+                CardLowRibbonImage.color = cardAsset.FactionAsset.FactionRibbonsTint;
 
-            FactionText.color = cardAsset.FactionAsset.FactionTextTint;
-            NameText.color = cardAsset.FactionAsset.FactionTextTint;
-            DescriptionText.color = cardAsset.FactionAsset.FactionTextTint;
-
-            FactionText.text = cardAsset.FactionAsset.FactionName;
+            if (FactionText != null)
+            {
+                FactionText.color = cardAsset.FactionAsset.FactionTextTint;
+                FactionText.text = cardAsset.FactionAsset.FactionName;
+            }
+            
+            if (NameText != null)
+                NameText.color = cardAsset.FactionAsset.FactionTextTint;
+            if (DescriptionText != null)
+                DescriptionText.color = cardAsset.FactionAsset.FactionTextTint;
         }
         else
         {
             //CardBodyImage.color = GlobalSettings.Instance.CardBodyStandardColor; // #EEE8D0
-            CardFaceFrameImage.color = Color.white;
+            if (CardFaceFrameImage != null)
+                CardFaceFrameImage.color = Color.white;
             //CardTopRibbonImage.color = GlobalSettings.Instance.CardRibbonsStandardColor; // #A3A3A3
             //CardLowRibbonImage.color = GlobalSettings.Instance.CardRibbonsStandardColor;
 
-            FactionText.color = Color.black;
-            NameText.color = Color.black;
-            DescriptionText.color = Color.black;
+            if (FactionText != null)
+            {
+                FactionText.color = Color.black;
+                FactionText.text = "Special";
+            }
+
+            if (NameText != null)
+                NameText.color = Color.black;
+            if (DescriptionText != null)
+                DescriptionText.color = Color.black;
 
             //CardLowRibbonImage.gameObject.SetActive(false);
-            FactionText.text = "Special";
         }
 
         // 2) add card name
-        NameText.text = cardAsset.name;
+        if (NameText != null)
+            NameText.text = cardAsset.name;
         // 4) add description
-        DescriptionText.text = cardAsset.Value.ToString();
+        if (DescriptionText != null)
+            DescriptionText.text = cardAsset.Value.ToString();
         // 5) Change the card graphic sprite
-        CardGraphicImage.sprite = cardAsset.CardImage;
+        if (CardGraphicImage != null)
+            CardGraphicImage.sprite = cardAsset.CardImage;
 
         if (PreviewManager != null)
         {

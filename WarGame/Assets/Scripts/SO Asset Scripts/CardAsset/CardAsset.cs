@@ -8,6 +8,6 @@ public class CardAsset : ScriptableObject
     //public string Description;  // Description for spell or character
     public FactionAsset FactionAsset;
 	public Sprite CardImage;
-    [Range(0, 120)]
+    [Range(0, 140)]
     public int Value;
 }

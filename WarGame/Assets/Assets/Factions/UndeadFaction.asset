@@ -13,5 +13,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FactionName: The Undead
   FactionCardTint: {r: 0.7019608, g: 0.6862745, b: 0.627451, a: 1}
-  FactionRibbonsTint: {r: 0.29411766, g: 0.29411766, b: 0.29411766, a: 1}
+  FactionRibbonsTint: {r: 0.23921569, g: 0.23921569, b: 0.23921569, a: 1}
   FactionTextTint: {r: 1, g: 1, b: 1, a: 1}
