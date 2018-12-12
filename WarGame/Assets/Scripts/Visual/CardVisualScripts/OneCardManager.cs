@@ -9,8 +9,10 @@ public class OneCardManager : MonoBehaviour {
     public OneCardManager PreviewManager;
     [Header("Text Component References")]
     public Text NameText;
-    public Text DescriptionText;
+    public Text ValueText;
     public Text FactionText;
+    public Text SubtitleText;
+    public Text DescriptionText;
     [Header("Image References")]
     public Image CardTopRibbonImage;
     public Image CardLowRibbonImage;
@@ -66,6 +68,10 @@ public class OneCardManager : MonoBehaviour {
             
             if (NameText != null)
                 NameText.color = cardAsset.FactionAsset.FactionTextTint;
+            if (ValueText != null)
+                ValueText.color = cardAsset.FactionAsset.FactionTextTint;
+            if (SubtitleText != null)
+                SubtitleText.color = cardAsset.FactionAsset.FactionTextTint;
             if (DescriptionText != null)
                 DescriptionText.color = cardAsset.FactionAsset.FactionTextTint;
         }
@@ -85,6 +91,10 @@ public class OneCardManager : MonoBehaviour {
 
             if (NameText != null)
                 NameText.color = Color.black;
+            if (ValueText != null)
+                ValueText.color = Color.black;
+            if (SubtitleText != null)
+                SubtitleText.color = Color.black;
             if (DescriptionText != null)
                 DescriptionText.color = Color.black;
 
@@ -95,12 +105,16 @@ public class OneCardManager : MonoBehaviour {
         if (NameText != null)
             NameText.text = cardAsset.name;
         // 4) add description
+        if (ValueText != null)
+            ValueText.text = cardAsset.Value.ToString();
+        if (SubtitleText != null)
+            SubtitleText.text = cardAsset.Subtitle;
         if (DescriptionText != null)
-            DescriptionText.text = cardAsset.Value.ToString();
+            DescriptionText.text = cardAsset.Description;
+
         // 5) Change the card graphic sprite
         if (CardGraphicImage != null)
             CardGraphicImage.sprite = cardAsset.CardImage;
-
         if (PreviewManager != null)
         {
             // this is a card and not a preview

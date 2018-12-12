@@ -162,8 +162,54 @@ Prefab:
       propertyPath: m_Name
       value: Undead Card
       objectReference: {fileID: 0}
+    - target: {fileID: 1205078507993558, guid: 7b6e4cabc49a47e42baab8b295fdcfb1, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7b6e4cabc49a47e42baab8b295fdcfb1, type: 2}
+  m_IsPrefabAsset: 0
+--- !u!1001 &318714346
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4443144167161084, guid: 77d1dfa472d41ed4185201ea74ba7759, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 5.24
+      objectReference: {fileID: 0}
+    - target: {fileID: 4443144167161084, guid: 77d1dfa472d41ed4185201ea74ba7759, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4443144167161084, guid: 77d1dfa472d41ed4185201ea74ba7759, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4443144167161084, guid: 77d1dfa472d41ed4185201ea74ba7759, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4443144167161084, guid: 77d1dfa472d41ed4185201ea74ba7759, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4443144167161084, guid: 77d1dfa472d41ed4185201ea74ba7759, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4443144167161084, guid: 77d1dfa472d41ed4185201ea74ba7759, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4443144167161084, guid: 77d1dfa472d41ed4185201ea74ba7759, type: 2}
+      propertyPath: m_RootOrder
+      value: 9
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 77d1dfa472d41ed4185201ea74ba7759, type: 2}
   m_IsPrefabAsset: 0
 --- !u!1 &519420028
 GameObject:
@@ -266,7 +312,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4731409635172780, guid: bac2c5999a8e433408b0436251817684, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -9.79
+      value: -2.2600007
       objectReference: {fileID: 0}
     - target: {fileID: 4731409635172780, guid: bac2c5999a8e433408b0436251817684, type: 2}
       propertyPath: m_LocalPosition.y
@@ -296,30 +342,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 7
       objectReference: {fileID: 0}
-    - target: {fileID: 1883305438125226, guid: bac2c5999a8e433408b0436251817684, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224598211685088594, guid: bac2c5999a8e433408b0436251817684,
-        type: 2}
-      propertyPath: m_AnchoredPosition.x
-      value: -2.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 224598211685088594, guid: bac2c5999a8e433408b0436251817684,
-        type: 2}
-      propertyPath: m_SizeDelta.x
-      value: -5
-      objectReference: {fileID: 0}
-    - target: {fileID: 224598211685088594, guid: bac2c5999a8e433408b0436251817684,
-        type: 2}
-      propertyPath: m_AnchoredPosition.y
-      value: -43.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 224598211685088594, guid: bac2c5999a8e433408b0436251817684,
-        type: 2}
-      propertyPath: m_SizeDelta.y
-      value: 69
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bac2c5999a8e433408b0436251817684, type: 2}
   m_IsPrefabAsset: 0
@@ -332,7 +354,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4493894167806808, guid: 7b6e4cabc49a47e42baab8b295fdcfb1, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -7.28
+      value: -5.78
       objectReference: {fileID: 0}
     - target: {fileID: 4493894167806808, guid: 7b6e4cabc49a47e42baab8b295fdcfb1, type: 2}
       propertyPath: m_LocalPosition.y
@@ -362,12 +384,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 6
       objectReference: {fileID: 0}
-    - target: {fileID: 114990263160821736, guid: 7b6e4cabc49a47e42baab8b295fdcfb1,
-        type: 2}
-      propertyPath: cardAsset
-      value: 
-      objectReference: {fileID: 11400000, guid: c4ca413475ce3eb4290bfc4919baac09,
-        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7b6e4cabc49a47e42baab8b295fdcfb1, type: 2}
   m_IsPrefabAsset: 0
@@ -420,8 +436,54 @@ Prefab:
       propertyPath: m_Name
       value: Divine Card
       objectReference: {fileID: 0}
+    - target: {fileID: 1205078507993558, guid: 7b6e4cabc49a47e42baab8b295fdcfb1, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7b6e4cabc49a47e42baab8b295fdcfb1, type: 2}
+  m_IsPrefabAsset: 0
+--- !u!1001 &1452184785
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4352823294299374, guid: 4a89f1bfb1fab1948a16928fc5215297, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 1.4499993
+      objectReference: {fileID: 0}
+    - target: {fileID: 4352823294299374, guid: 4a89f1bfb1fab1948a16928fc5215297, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4352823294299374, guid: 4a89f1bfb1fab1948a16928fc5215297, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4352823294299374, guid: 4a89f1bfb1fab1948a16928fc5215297, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4352823294299374, guid: 4a89f1bfb1fab1948a16928fc5215297, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4352823294299374, guid: 4a89f1bfb1fab1948a16928fc5215297, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4352823294299374, guid: 4a89f1bfb1fab1948a16928fc5215297, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4352823294299374, guid: 4a89f1bfb1fab1948a16928fc5215297, type: 2}
+      propertyPath: m_RootOrder
+      value: 8
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 4a89f1bfb1fab1948a16928fc5215297, type: 2}
   m_IsPrefabAsset: 0
 --- !u!1001 &1815285299
 Prefab:
@@ -471,6 +533,10 @@ Prefab:
     - target: {fileID: 1205078507993558, guid: 7b6e4cabc49a47e42baab8b295fdcfb1, type: 2}
       propertyPath: m_Name
       value: Natural Card
+      objectReference: {fileID: 0}
+    - target: {fileID: 1205078507993558, guid: 7b6e4cabc49a47e42baab8b295fdcfb1, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7b6e4cabc49a47e42baab8b295fdcfb1, type: 2}
@@ -524,6 +590,10 @@ Prefab:
       propertyPath: m_Name
       value: Depth Card
       objectReference: {fileID: 0}
+    - target: {fileID: 1205078507993558, guid: 7b6e4cabc49a47e42baab8b295fdcfb1, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7b6e4cabc49a47e42baab8b295fdcfb1, type: 2}
   m_IsPrefabAsset: 0
@@ -575,6 +645,10 @@ Prefab:
     - target: {fileID: 1205078507993558, guid: 7b6e4cabc49a47e42baab8b295fdcfb1, type: 2}
       propertyPath: m_Name
       value: Warrior Card
+      objectReference: {fileID: 0}
+    - target: {fileID: 1205078507993558, guid: 7b6e4cabc49a47e42baab8b295fdcfb1, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7b6e4cabc49a47e42baab8b295fdcfb1, type: 2}
