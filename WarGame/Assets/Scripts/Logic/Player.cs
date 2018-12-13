@@ -37,35 +37,17 @@ public class Player : MonoBehaviour //, ICharacter
         //PlayerID = IDFactory.GetUniqueID();
     }
 
-    public virtual void OnTurnStart()
-    {
-        // add one mana crystal to the pool;
-        Debug.Log("In ONTURNSTART for "+ gameObject.name);
-    }
+    //public void DrawCard()
+    //{
+    //    CardAsset drawnCard = deck.DrawCard();
 
-    public void DrawACard(bool fast = false)
-    {
-        if (deck.cards.Count > 0)
-        {
-            //if (hand.CardsInHand.Count < PArea.handVisual.slots.Children.Length)
-            //{
-            //    // 1) save index to place a visual card into visual hand
-            //    int indexToPlaceACard = hand.CardsInHand.Count;
-            //    // 2) logic: add card to hand
-            //    CardLogic newCard = new CardLogic(deck.cards[0]);
-            //    newCard.owner = this;
-            //    hand.CardsInHand.Add(newCard);
-            //    // Debug.Log(hand.CardsInHand.Count);
-            //    // 3) logic: remove the card from the deck
-            //    deck.cards.RemoveAt(0);
-            //    // 4) create a command
-            //    new DrawACardCommand(hand.CardsInHand[indexToPlaceACard], this, indexToPlaceACard, fast, fromDeck: true).AddToQueue(); 
-            //}
-        }
-        else
-        {
-            // there are no cards in the deck, take fatigue damage.
-        }
-       
-    }
+    //    // if no drawn card, then use the discard pile.. 
+    //    //if nothing in discard pile, you lose
+    //    if (drawnCard == null)
+    //    {
+
+    //    }
+
+        
+    //}
 }

@@ -9,7 +9,8 @@ public class Deck : MonoBehaviour {
 
     public GameObject deckRepresentation;
 
-    [SerializeField] private bool inPlay = false;
+    // What was this for?
+    //[SerializeField] private bool inPlay = false;
 
     private int _fullDeckCardCount;
 
@@ -50,6 +51,10 @@ public class Deck : MonoBehaviour {
         _cardSize = (_maxY - _minY) / _fullDeckCardCount;
     }
 
+    /// <summary>
+    /// Draws a card from the deck, removing it from the deck, and returns it.
+    /// </summary>
+    /// <returns>The card, or null, if the deck is empty.</returns>
     public CardAsset DrawCard()
     {
         CardAsset card = cards.FirstOrDefault();
