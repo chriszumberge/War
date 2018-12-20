@@ -11,6 +11,8 @@ public class Player : MonoBehaviour //, ICharacter
     public InPlay inPlay;
     public Table table;
 
+    public CardAsset CardInPlay;
+    public GameObject CardOnTable;
 
     public int ID
     {

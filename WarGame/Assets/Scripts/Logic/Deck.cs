@@ -2,12 +2,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System;
 
-public class Deck : MonoBehaviour {
+public class Deck : MonoBehaviour, ITapSubscriber {
 
     public List<CardAsset> cards = new List<CardAsset>();
 
     public GameObject deckRepresentation;
+    public bool playerDeck = false;
 
     // What was this for?
     //[SerializeField] private bool inPlay = false;
@@ -22,6 +24,10 @@ public class Deck : MonoBehaviour {
     {
         // Cards are being dealt out by GameManager 
         //cards.Shuffle();
+
+        TapDetector detector = Camera.main.GetComponent<TapDetector>();
+        detector.SubscribeToTap(this);
+
     }
 
     void Update()
@@ -42,8 +48,6 @@ public class Deck : MonoBehaviour {
 
     public void Init()
     {
-        Debug.Log("Initing");
-
         cards.Shuffle();
 
         _fullDeckCardCount = cards.Count;
@@ -66,4 +70,26 @@ public class Deck : MonoBehaviour {
 
         return card;
     }
+
+    public void ScreenTapped(Vector3 screenPoint)
+    {
+    }
+
+    public void ObjectTapped(RaycastHit hit)
+    {
+        if (playerDeck)
+        {
+            float hitX = (float)Math.Round(hit.collider.transform.position.x, 1);
+            float hitY = (float)Math.Round(hit.collider.transform.position.y, 1);
+            Vector2 hitVect = new Vector2(hitX, hitY);
+
+            Vector2 deckVect = new Vector2(this.transform.position.x, this.transform.position.y);
+
+            if (hitVect.x.Equals(deckVect.x) && hitVect.y.Equals(deckVect.y))
+            {
+                GameManager.Instance.PlayerDrawRequested(this);
+            }
+        }
+    }
 }
+;

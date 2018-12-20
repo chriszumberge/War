@@ -4,8 +4,12 @@ using UnityEngine.UI;
 
 // holds the refs to all the Text, Images on the card
 public class OneCardManager : MonoBehaviour {
-
-    public CardAsset cardAsset;
+    CardAsset _cardAsset;
+    public CardAsset cardAsset
+    {
+        get { return _cardAsset; }
+        set { _cardAsset = value; redraw(); }
+    }
     public OneCardManager PreviewManager;
     [Header("Text Component References")]
     public Text NameText;
@@ -122,5 +126,10 @@ public class OneCardManager : MonoBehaviour {
             PreviewManager.cardAsset = cardAsset;
             PreviewManager.ReadCardFromAsset();
         }
+    }
+
+    public void redraw()
+    {
+        this.ReadCardFromAsset();
     }
 }
