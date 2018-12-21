@@ -9,9 +9,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ecf2e1437aad335478608c9a544560b5, type: 3}
-  m_Name: NaturalFaction
+  m_Name: PrimalFaction
   m_EditorClassIdentifier: 
-  FactionName: The Natural
+  FactionName: The Primals
   FactionCardTint: {r: 0.61960787, g: 0.73333335, b: 0.5921569, a: 1}
   FactionRibbonsTint: {r: 0.22745098, g: 0.48235294, b: 0.32156864, a: 1}
   FactionTextTint: {r: 1, g: 1, b: 1, a: 1}

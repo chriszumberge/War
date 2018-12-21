@@ -17,7 +17,7 @@ public class Discard : MonoBehaviour {
 
     private void Awake()
     {
-        _allCardCount = GameManager.Instance.AvailableCards.Count;
+        _allCardCount = 52; //GameManager.Instance.AvailableCards.Count;
 
         _cardSize = (_maxY - _minY) / _allCardCount / 2;
     }

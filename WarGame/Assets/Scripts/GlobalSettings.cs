@@ -9,6 +9,12 @@ public class GlobalSettings : MonoBehaviour
     //[SteppedRange(0.25f, 2.0f, 0.25f)]
     public float TimeMultiplier = 1.0f;
 
+    public bool UseDepths = false;
+    public bool UseDivine = false;
+    public bool UsePrimal = false;
+    public bool UseUndead = false;
+    public bool UseWarrior = false;
+
     [Header("Default Settings")]
     public float StartGameMessageDisplayTime = 2.0f;
     public static float MessageStartTime { get { return GlobalSettings.Instance.StartGameMessageDisplayTime / GlobalSettings.Instance.TimeMultiplier; } }
@@ -42,5 +48,14 @@ public class GlobalSettings : MonoBehaviour
     private void Awake()
     {
         Instance = this;
+    }
+
+    public void Reset()
+    {
+        UseDepths = false;
+        UseDivine = false;
+        UsePrimal = false;
+        UseUndead = false;
+        UseWarrior = false;
     }
 }

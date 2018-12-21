@@ -7,17 +7,20 @@ public class GameManager : MonoBehaviour
 
     public static GameManager Instance;
 
-    public List<CardAsset> AvailableCards = new List<CardAsset>();
+    //public List<CardAsset> AvailableCards = new List<CardAsset>();
 
     public Player player;
     public Player opponent;
 
     // GAME MAKER STATES.. ON UPDATE DEPENDING ON STATE.. maybe get rid of command queue? or cmd queue in executing state
-    public GameState CurrentState = GameState.GameBeginPhase;
+    public GameState CurrentState = GameState.NotPlaying;
 
     public GameObject CardPrefab;
 
     public GameObject GameMenu;
+
+    [SerializeField]
+    private List<CardAsset> cardsForThisGame = new List<CardAsset>();
 
     private void Awake()
     {
@@ -27,22 +30,35 @@ public class GameManager : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        BeginGame();
+        
     }
 
     void BeginGame()
     {
-        AvailableCards.Shuffle();
+        if (GlobalSettings.Instance.UseDepths)
+            cardsForThisGame.AddRange(CardManager.Instance.DepthCards);
+        if (GlobalSettings.Instance.UseDivine)
+            cardsForThisGame.AddRange(CardManager.Instance.DivineCards);
+        if (GlobalSettings.Instance.UsePrimal)
+            cardsForThisGame.AddRange(CardManager.Instance.PrimalCards);
+        if (GlobalSettings.Instance.UseUndead)
+            cardsForThisGame.AddRange(CardManager.Instance.UndeadCards);
+        if (GlobalSettings.Instance.UseWarrior)
+            cardsForThisGame.AddRange(CardManager.Instance.WarriorCards);
 
-        for (int i = 0; i < AvailableCards.Count; i++)
+        cardsForThisGame.AddRange(CardManager.Instance.SpecialCards);
+
+        cardsForThisGame.Shuffle();
+
+        for (int i = 0; i < cardsForThisGame.Count; i++)
         {
             if (i % 2 == 0)
             {
-                player.deck.cards.Add(AvailableCards[i]);
+                player.deck.cards.Add(cardsForThisGame[i]);
             }
             else
             {
-                opponent.deck.cards.Add(AvailableCards[i]);
+                opponent.deck.cards.Add(cardsForThisGame[i]);
             }
         }
 
@@ -57,6 +73,8 @@ public class GameManager : MonoBehaviour
         GameMenu.SetActive(false);
 
         Command.CommandQueue.Clear();
+
+        cardsForThisGame.Clear();
 
         cardsOnTable.Clear();
         cardsAtStake.Clear();
