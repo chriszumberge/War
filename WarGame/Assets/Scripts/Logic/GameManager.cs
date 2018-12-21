@@ -17,6 +17,8 @@ public class GameManager : MonoBehaviour
 
     public GameObject CardPrefab;
 
+    public GameObject GameMenu;
+
     private void Awake()
     {
         Instance = this;
@@ -24,6 +26,11 @@ public class GameManager : MonoBehaviour
 
     // Use this for initialization
     void Start()
+    {
+        BeginGame();
+    }
+
+    void BeginGame()
     {
         AvailableCards.Shuffle();
 
@@ -41,10 +48,33 @@ public class GameManager : MonoBehaviour
 
         player.deck.Init();
         opponent.deck.Init();
-        //player.deck.cards.Shuffle();
-        //opponent.deck.cards.Shuffle();
 
-        //MessageManager.Instance.ShowMessage("Game Begin", 3f);
+        CurrentState = GameState.GameBeginPhase;
+    }
+
+    void ClearGame()
+    {
+        GameMenu.SetActive(false);
+
+        Command.CommandQueue.Clear();
+
+        cardsOnTable.Clear();
+        cardsAtStake.Clear();
+
+        // TODO group into Player.Clear/Reset method
+        player.deck.cards.Clear();
+        player.discard.cards.Clear();
+        player.HasLost = false;
+
+        opponent.deck.cards.Clear();
+        opponent.discard.cards.Clear();
+        opponent.HasLost = false;
+    }
+
+    public void ResetGame()
+    {
+        ClearGame();
+        BeginGame();
     }
 
     public static float TimeInStage = 0;
@@ -60,7 +90,7 @@ public class GameManager : MonoBehaviour
             {
                 if (CurrentState == GameState.GameBeginPhase)
                 {
-                    var gameBeginMsgCmd = new ShowMessageCommand("Game Begin", 3f);
+                    var gameBeginMsgCmd = new ShowMessageCommand("Game Begin", GlobalSettings.MessageStartTime);
                     gameBeginMsgCmd.AddToQueue();
 
                     var changeStateCmd = new ChangeStateCommand(GameState.DrawPhase);
@@ -75,9 +105,25 @@ public class GameManager : MonoBehaviour
                         // Show a Tip to tap the deck
                     }
                 }
+                else if (CurrentState == GameState.DrawTransitionPhase)
+                {
+                    //(new MoveGameObjectCommand(drawnCard, player.inPlay.transform.position, 0.5f)).AddToQueue();
+                    //(new MoveGameObjectCommand(oppDrawnCard, opponent.inPlay.transform.position, 0.5f)).AddToQueue();
+                    (new MoveGameObjectCommand(new GameObject[] { player.CardOnTable, opponent.CardOnTable },
+                        new Vector3[] { player.inPlay.transform.position, opponent.inPlay.transform.position },
+                        GlobalSettings.CardMoveTime)).AddToQueue();
+
+                    (new ChangeStateCommand(GameState.PlayPhase)).AddToQueue();
+                }
                 else if (CurrentState == GameState.PlayPhase)
                 {
+                    (new RevealCardsCommand(new GameObject[] { player.CardOnTable, opponent.CardOnTable })).AddToQueue();
 
+                    (new DelayCommand(GlobalSettings.RevealDelayTime)).AddToQueue();
+
+                    (new ChangeStateCommand(GameState.ResolvePhase)).AddToQueue();
+
+                    (new ResolvePlayCommand(ref player, ref opponent)).AddToQueue();
                 }
                 else if (CurrentState == GameState.WarPhase)
                 {
@@ -85,56 +131,64 @@ public class GameManager : MonoBehaviour
                 }
                 else if (CurrentState == GameState.ResolvePhase)
                 {
-
                 }
                 else if (CurrentState == GameState.EndPhase)
                 {
-                    bool gameIsOver = false;
-
-                    // TODO move to "HandleEmptyDeck" method that way it's also called if a player is drawing for war?
                     if (player.deck.cards.Count == 0)
                     {
                         if (player.discard.cards.Count == 0)
                         {
-                            (new ShowMessageCommand("You Lose!", 5.0f)).AddToQueue();
-                            (new ChangeStateCommand(GameState.GameOverPhase)).AddToQueue();
-                            gameIsOver = true;
+                            player.HasLost = true;
                         }
                         else
                         {
-                            // TODO animate
-                            player.deck.cards.AddRange(player.discard.cards);
-                            player.discard.cards.Clear();
+                            (new MoveDiscardToDeckCommand(ref player)).AddToQueue();
                         }
                     }
-                    
                     if (opponent.deck.cards.Count == 0)
                     {
                         if (opponent.discard.cards.Count == 0)
                         {
-                            (new ShowMessageCommand("You Win!", 5.0f)).AddToQueue();
-                            (new ChangeStateCommand(GameState.GameOverPhase)).AddToQueue();
-                            gameIsOver = true;
+                            opponent.HasLost = true;
                         }
                         else
                         {
-                            // TODO animate
-                            opponent.deck.cards.AddRange(opponent.discard.cards);
-                            opponent.discard.cards.Clear();
+                            (new MoveDiscardToDeckCommand(ref opponent)).AddToQueue();
                         }
                     }
 
-                    if (!gameIsOver)
+                    if (player.HasLost || opponent.HasLost)
+                    {
+                        (new ChangeStateCommand(GameState.GameOverPhase)).AddToQueue();
+                    }
+                    else
                     {
                         (new ChangeStateCommand(GameState.DrawPhase)).AddToQueue();
                     }
                 }
                 else if (CurrentState == GameState.GameOverPhase)
                 {
+                    Command.CommandQueue.Clear();
 
+                    if (player.HasLost)
+                    {
+                        (new ShowMessageCommand("You Lose!", GlobalSettings.MessageGameEndTime)).AddToQueue();
+                    }
+                    else
+                    {
+                        (new ShowMessageCommand("You Win!", GlobalSettings.MessageGameEndTime)).AddToQueue();
+                    }
+
+                    (new ChangeStateCommand(GameState.NotPlaying)).AddToQueue();
+                }
+                else if (CurrentState == GameState.NotPlaying)
+                {
+                    if (!GameMenu.activeSelf)
+                    {
+                        GameMenu.SetActive(true);
+                    }
                 }
             }
-
 
             //if (Command.CommandQueue.Count > 0 && !Command.playingQueue)
             if (Command.CommandQueue.Count > 0)
@@ -145,58 +199,23 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void PlayerDrawRequested(Deck drawDeck)
+    public List<CardAsset> cardsAtStake = new List<CardAsset>();
+    public List<GameObject> cardsOnTable = new List<GameObject>();
+
+    public void PlayerDrawRequested()
     {
         if (CurrentState == GameState.DrawPhase)
         {
-            CardAsset card = drawDeck.DrawCard();
-            player.CardInPlay = card;
-            
-            GameObject drawnCard = Instantiate(CardPrefab,
-                                               new Vector3(drawDeck.transform.position.x,
-                                                           drawDeck.transform.position.y,
-                                                           -1),
-                                               new Quaternion(0, 180, 0, 0)
-                                               );
-            //drawDeck.transform.rotation);
-            //OneCardManager cardMgr = drawnCard.GetComponent<OneCardManager>();
-            //cardMgr.cardAsset = card;
-            //cardMgr.redraw();
-            (drawnCard.GetComponent<OneCardManager>()).cardAsset = card;
-            player.CardOnTable = drawnCard;
 
-            CardAsset oppCard = opponent.deck.DrawCard();
-            opponent.CardInPlay = oppCard;
-            GameObject oppDrawnCard = GameObject.Instantiate(CardPrefab,
-                                                               new Vector3(opponent.deck.transform.position.x,
-                                                                           opponent.deck.transform.position.y,
-                                                                           -1),
-                                                               new Quaternion(0, 180, 0, 0));
-            //OneCardManager oppCardMgr = oppDrawnCard.GetComponent<OneCardManager>();
-            //oppCardMgr.cardAsset = oppCard;
-            //oppCardMgr.redraw();
-            (oppDrawnCard.GetComponent<OneCardManager>()).cardAsset = oppCard;
-            opponent.CardOnTable = oppDrawnCard;
+            (new DrawCardCommand(ref player)).AddToQueue();
+            (new DrawCardCommand(ref opponent)).AddToQueue();
 
-            if (card != null)
+            if (!player.HasLost && !opponent.HasLost)
             {
+                (new InstantiateCardCommand(ref player)).AddToQueue();
+                (new InstantiateCardCommand(ref opponent)).AddToQueue();
+
                 (new ChangeStateCommand(GameState.DrawTransitionPhase)).AddToQueue();
-
-                //(new MoveGameObjectCommand(drawnCard, player.inPlay.transform.position, 0.5f)).AddToQueue();
-                //(new MoveGameObjectCommand(oppDrawnCard, opponent.inPlay.transform.position, 0.5f)).AddToQueue();
-                (new MoveGameObjectCommand(new GameObject[] { drawnCard, oppDrawnCard },
-                    new Vector3[] { player.inPlay.transform.position, opponent.inPlay.transform.position },
-                    0.5f)).AddToQueue();
-                
-                (new ChangeStateCommand(GameState.PlayPhase)).AddToQueue();
-
-                (new RevealCardsCommand(drawnCard, oppDrawnCard)).AddToQueue();
-
-                (new DelayCommand(1.0f)).AddToQueue();
-
-                (new ChangeStateCommand(GameState.ResolvePhase)).AddToQueue();
-
-                (new ResolvePlayCommand(player, opponent)).AddToQueue();
             }
             else
             {

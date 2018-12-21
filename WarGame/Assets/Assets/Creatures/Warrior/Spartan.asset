@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae894b1447b291547a8f9741eafaa774, type: 3}
+  m_Name: Spartan
+  m_EditorClassIdentifier: 
+  FactionAsset: {fileID: 11400000, guid: fd1e85e3b30e0544ebdc71dfdb8262aa, type: 2}
+  CardImage: {fileID: 21300000, guid: 6fefc0b1e40c6a84a8eb62a242800ae8, type: 3}
+  Value: 80
+  AutoWar: 0
+  Subtitle: 
+  Description: 

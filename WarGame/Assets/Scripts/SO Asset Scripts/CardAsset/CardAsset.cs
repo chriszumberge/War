@@ -11,6 +11,8 @@ public class CardAsset : ScriptableObject
     [Range(0, 140)]
     public int Value;
 
+    public bool AutoWar = false;
+
     // Using asset name as title right now
     //public string Title;
     public string Subtitle;

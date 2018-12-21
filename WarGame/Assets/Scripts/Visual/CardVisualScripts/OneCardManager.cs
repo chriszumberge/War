@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using System;
 
 // holds the refs to all the Text, Images on the card
 public class OneCardManager : MonoBehaviour {
@@ -109,8 +110,16 @@ public class OneCardManager : MonoBehaviour {
         if (NameText != null)
             NameText.text = cardAsset.name;
         // 4) add description
-        if (ValueText != null)
-            ValueText.text = cardAsset.Value.ToString();
+        if (cardAsset.AutoWar)
+        {
+            if (ValueText != null)
+                ValueText.text = "WAR!";
+        }
+        else
+        {
+            if (ValueText != null)
+                ValueText.text = cardAsset.Value.ToString();
+        }
         if (SubtitleText != null)
             SubtitleText.text = cardAsset.Subtitle;
         if (DescriptionText != null)

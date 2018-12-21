@@ -14,6 +14,8 @@ public class Player : MonoBehaviour //, ICharacter
     public CardAsset CardInPlay;
     public GameObject CardOnTable;
 
+    public bool HasLost = false;
+
     public int ID
     {
         get{ return PlayerID; }
@@ -29,7 +31,6 @@ public class Player : MonoBehaviour //, ICharacter
                 return Players[0];
         }
     }
-
 
     public static Player[] Players;
 

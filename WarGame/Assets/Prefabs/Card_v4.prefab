@@ -295,7 +295,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1961476276558142
 GameObject:
   m_ObjectHideFlags: 1
@@ -608,7 +608,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd3dc5119f7997b4d9bd83835c54ddb4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardAsset: {fileID: 11400000, guid: 0fac7332e1bf74b4c8c1fc3b54de118d, type: 2}
   PreviewManager: {fileID: 0}
   NameText: {fileID: 114226631877291080}
   ValueText: {fileID: 114177062424684644}

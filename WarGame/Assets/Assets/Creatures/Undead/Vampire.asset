@@ -13,4 +13,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FactionAsset: {fileID: 11400000, guid: 5d8efc0e4d8e92e46b1c88830625bf5a, type: 2}
   CardImage: {fileID: 21300000, guid: 77b2bb81611bbe64ebb9bea50755285e, type: 3}
-  Value: 90
+  Value: 100
+  AutoWar: 0
+  Subtitle: 
+  Description: 

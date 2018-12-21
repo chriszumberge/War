@@ -17,6 +17,8 @@ public class ChangeStateCommand : Command
 
         GameManager.Instance.CurrentState = _newGameState;
 
+        GameManager.TimeInStage = 0;
+
         Command.CommandExecutionComplete();
     }
 }

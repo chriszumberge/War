@@ -27,7 +27,6 @@ public class Deck : MonoBehaviour, ITapSubscriber {
 
         TapDetector detector = Camera.main.GetComponent<TapDetector>();
         detector.SubscribeToTap(this);
-
     }
 
     void Update()
@@ -87,7 +86,7 @@ public class Deck : MonoBehaviour, ITapSubscriber {
 
             if (hitVect.x.Equals(deckVect.x) && hitVect.y.Equals(deckVect.y))
             {
-                GameManager.Instance.PlayerDrawRequested(this);
+                GameManager.Instance.PlayerDrawRequested();
             }
         }
     }

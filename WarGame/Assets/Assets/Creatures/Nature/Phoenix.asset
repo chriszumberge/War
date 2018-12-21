@@ -14,3 +14,6 @@ MonoBehaviour:
   FactionAsset: {fileID: 11400000, guid: 4d357d9ea381a0a4db96173aae428e9d, type: 2}
   CardImage: {fileID: 21300000, guid: df4a46385f5bc8841b5b4630f2aba8cd, type: 3}
   Value: 100
+  AutoWar: 0
+  Subtitle: 
+  Description: 

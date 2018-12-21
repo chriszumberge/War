@@ -12,6 +12,20 @@ public class Command
         CommandQueue.Enqueue(this);
     }
 
+    public virtual void InsertAtFront()
+    {
+        Queue<Command> tempQueue = new Queue<Command>();
+        tempQueue.Enqueue(this);
+        while (CommandQueue.Count > 0)
+        {
+            tempQueue.Enqueue(CommandQueue.Dequeue());
+        }
+        while (tempQueue.Count > 0)
+        {
+            CommandQueue.Enqueue(tempQueue.Dequeue());
+        }
+    }
+
     public virtual void StartCommandExecution()
     {
         playingQueue = true;

@@ -4,19 +4,17 @@ using UnityEngine;
 
 public class FaceDownCommand : Command {
 
-    private GameObject playerCard;
-    private GameObject oppDrawnCard;
+    GameObject[] _cards;
 
-    public FaceDownCommand(GameObject playerCard, GameObject oppDrawnCard)
+    public FaceDownCommand(GameObject[] cards)
     {
-        this.playerCard = playerCard;
-        this.oppDrawnCard = oppDrawnCard;
+        _cards = cards;
     }
 
     public override void StartCommandExecution()
     {
         base.StartCommandExecution();
 
-        MovementManager.Instance.Rotate(new GameObject[] { playerCard, oppDrawnCard }, new Quaternion(0, 1.0f, 0, 0), 0.2f);
+        MovementManager.Instance.Rotate(_cards, new Quaternion(0, 1.0f, 0, 0), GlobalSettings.FlipDownTime);
     }
 }

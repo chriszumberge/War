@@ -7,5 +7,6 @@
     ResolvePhase,
     WarPhase,
     EndPhase,
-    GameOverPhase
+    GameOverPhase,
+    NotPlaying
 }
