@@ -549,11 +549,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4817283634866006, guid: 7a595f6bf392f5c4682d3ca796688506, type: 2}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1845458999224630, guid: 7a595f6bf392f5c4682d3ca796688506, type: 2}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1292016685922324, guid: 7a595f6bf392f5c4682d3ca796688506, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7a595f6bf392f5c4682d3ca796688506, type: 2}
@@ -729,6 +733,7 @@ GameObject:
   - component: {fileID: 519420031}
   - component: {fileID: 519420029}
   - component: {fileID: 519420033}
+  - component: {fileID: 519420030}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -743,6 +748,36 @@ AudioListener:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_Enabled: 1
+--- !u!114 &519420030
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f4f1dca6f0b7494b9486b4d2aac794d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RenderTextureResolutoinFactor: 0.25
+  UseBloom: 1
+  Threshold: 2
+  SoftKnee: 0
+  Radius: 7
+  Intensity: 0.5
+  HighQuality: 0
+  AntiFlicker: 0
+  source: {fileID: 0}
+  depth: {fileID: 0}
+  destination: {fileID: 0}
+  previuosFrameWidth: 2436
+  previuosFrameHeight: 1125
+  previousScale: 0.25
+  addCamera: {fileID: 0}
+  tempGO: {fileID: 0}
+  HDRSupported: 1
+  m_Material: {fileID: 0}
+  m_MaterialAdditive: {fileID: 0}
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
@@ -1026,7 +1061,7 @@ Transform:
   m_LocalScale: {x: 1.85, y: 1.8, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &981167378
 Prefab:
