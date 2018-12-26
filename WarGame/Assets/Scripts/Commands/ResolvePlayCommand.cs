@@ -20,6 +20,12 @@ public class ResolvePlayCommand : Command
 
         Vector3 cardsEndLocation = Vector3.zero;
         Discard cardsEndDiscard = new Discard();
+
+        GameObject attacker = null;
+        Vector3 attackerLocation = Vector3.zero;
+        GameObject attackEffectPrefab = null;
+        Vector3 victimLocation = Vector3.zero;
+
         bool shouldResolve = false;
 
         bool goToWar = player.CardInPlay.AutoWar || 
@@ -96,6 +102,11 @@ public class ResolvePlayCommand : Command
             cardsEndLocation = player.discard.transform.position;
             cardsEndDiscard = player.discard;
 
+            attackerLocation = player.inPlay.transform.position;
+            victimLocation = opponent.inPlay.transform.position;
+            attacker = player.CardOnTable;
+            attackEffectPrefab = player.CardInPlay.WinEffectPrefab;
+
             shouldResolve = true;
         }
         else if (opponent.CardInPlay.Value > player.CardInPlay.Value)
@@ -103,11 +114,19 @@ public class ResolvePlayCommand : Command
             cardsEndLocation = opponent.discard.transform.position;
             cardsEndDiscard = opponent.discard;
 
+            attackerLocation = opponent.inPlay.transform.position;
+            victimLocation = player.inPlay.transform.position;
+            attacker = opponent.CardOnTable;
+            attackEffectPrefab = opponent.CardInPlay.WinEffectPrefab;
+
             shouldResolve = true;
         }
 
         if (shouldResolve)
         {
+            // Attack anim
+            (new AttackEffectCommand(attacker, attackerLocation, victimLocation, attackEffectPrefab)).AddToQueue();
+
             (new FaceDownCommand(GameManager.Instance.cardsOnTable.ToArray())).AddToQueue();
 
             (new MoveGameObjectCommand(GameManager.Instance.cardsOnTable.ToArray(), cardsEndLocation, GlobalSettings.CardMoveTime)).AddToQueue();

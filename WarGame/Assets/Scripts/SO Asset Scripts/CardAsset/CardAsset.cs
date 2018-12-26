@@ -19,4 +19,6 @@ public class CardAsset : ScriptableObject
 
     // If we want like snippets about cards
     public string Description;
+
+    public GameObject WinEffectPrefab;
 }
