@@ -553,7 +553,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1845458999224630, guid: 7a595f6bf392f5c4682d3ca796688506, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7a595f6bf392f5c4682d3ca796688506, type: 2}
@@ -1224,7 +1224,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 1160459224}
   opponent: {fileID: 109702523}
-  CurrentState: 0
+  CurrentState: 8
   CardPrefab: {fileID: 1930807636546464, guid: 77d1dfa472d41ed4185201ea74ba7759, type: 2}
   GameMenu: {fileID: 153557920}
   cardsForThisGame: []

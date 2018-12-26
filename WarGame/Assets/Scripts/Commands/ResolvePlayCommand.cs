@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class ResolvePlayCommand : Command
@@ -24,11 +25,20 @@ public class ResolvePlayCommand : Command
         bool goToWar = player.CardInPlay.AutoWar || 
                        opponent.CardInPlay.AutoWar || 
                        player.CardInPlay.Value == opponent.CardInPlay.Value;
-
+        
         if (goToWar)
         {
             // WAR
             (new ShowMessageCommand("  WAR!  ", GlobalSettings.MessageWarTime)).AddToQueue();
+
+            //if (GameManager.Instance.cardsOnTable.Count > 6)
+            //{
+            //    (new MoveGameObjectCommand(
+            //        GameManager.Instance.cardsOnTable.ToArray(),
+            //        GameManager.Instance.cardsOnTable.Select(x => x.transform.position).Select(x => new Vector3(x.x, x.y, 1.0f)).ToArray(),
+            //        0.2f)).AddToQueue();
+            //}
+            int warCount = (GameManager.Instance.cardsOnTable.Count / 8);
 
             // Play 3 down
             for (int i = 1; i < 4; i++)
@@ -44,11 +54,11 @@ public class ResolvePlayCommand : Command
                 (new MoveCardsCommand(ref player,
                     new Vector3(player.inPlay.transform.position.x,
                                 player.inPlay.transform.position.y - (0.4f * i),
-                                player.inPlay.transform.position.z - (0.2f * i)),
+                                player.inPlay.transform.position.z - (0.2f * i  + (warCount * 0.8f))),
                     ref opponent,
                     new Vector3(opponent.inPlay.transform.position.x,
                                 opponent.inPlay.transform.position.y + (0.4f * i),
-                                opponent.inPlay.transform.position.z - (0.2f * i)),
+                                opponent.inPlay.transform.position.z - (0.2f * i + (warCount * 0.8f))),
                     GlobalSettings.WarCardMoveTime)).AddToQueue();
 
                 (new DelayCommand(GlobalSettings.WarStackDelayTime)).AddToQueue();
@@ -67,11 +77,11 @@ public class ResolvePlayCommand : Command
             (new MoveCardsCommand(ref player,
                     new Vector3(player.inPlay.transform.position.x,
                                 player.inPlay.transform.position.y - (0.4f * 4),
-                                player.inPlay.transform.position.z - (0.1f * 10)),
+                                player.inPlay.transform.position.z - (0.2f * 4 + (warCount * 0.8f))),
                     ref opponent,
                     new Vector3(opponent.inPlay.transform.position.x,
                                 opponent.inPlay.transform.position.y + (0.4f * 4),
-                                opponent.inPlay.transform.position.z - (0.1f * 10)),
+                                opponent.inPlay.transform.position.z - (0.2f * 4 + (warCount * 0.8f))),
                     GlobalSettings.CardMoveTime)).AddToQueue();
 
             //(new RevealCardsCommand(new GameObject[] { player.CardOnTable, opponent.CardOnTable })).AddToQueue();
